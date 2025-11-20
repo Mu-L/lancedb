@@ -883,7 +883,7 @@ class LanceQueryBuilder(ABC):
         ----------
         where: str
             The where clause which is a valid SQL where clause. See
-            `Lance filter pushdown <https://lancedb.github.io/lance/read_and_write.html#filter-push-down>`_
+            `Lance filter pushdown <https://lance.org/guide/read_and_write#filter-push-down>`_
             for valid SQL expressions.
         prefilter: bool, default True
             If True, apply the filter before vector search, otherwise the
@@ -1356,7 +1356,7 @@ class LanceVectorQueryBuilder(LanceQueryBuilder):
         ----------
         where: str
             The where clause which is a valid SQL where clause. See
-            `Lance filter pushdown <https://lancedb.github.io/lance/read_and_write.html#filter-push-down>`_
+            `Lance filter pushdown <https://lance.org/guide/read_and_write#filter-push-down>`_
             for valid SQL expressions.
         prefilter: bool, default True
             If True, apply the filter before vector search, otherwise the
@@ -1495,7 +1495,7 @@ class LanceFtsQueryBuilder(LanceQueryBuilder):
         if self._phrase_query:
             if isinstance(query, str):
                 if not query.startswith('"') or not query.endswith('"'):
-                    query = f'"{query}"'
+                    self._query = f'"{query}"'
             elif isinstance(query, FullTextQuery) and not isinstance(
                 query, PhraseQuery
             ):
